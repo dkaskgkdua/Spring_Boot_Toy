@@ -1,5 +1,6 @@
 package com.naver.test.web;
 
+import com.naver.test.config.auth.LoginUser;
 import com.naver.test.config.auth.dto.SessionUser;
 import com.naver.test.domain.user.User;
 import com.naver.test.service.posts.PostsService;
@@ -17,16 +18,14 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
+    //private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        //SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) {
-            System.out.println("있따");
-            System.out.println("이름 : " + user.getName());
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("memberName", user.getName());
         }
         return "index";
     }
