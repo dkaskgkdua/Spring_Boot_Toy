@@ -2,6 +2,7 @@ package com.naver.test.web.dto;
 
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class HelloResponseDtoTest {
     @Test
     public void lombok_test() {
